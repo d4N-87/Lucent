@@ -1,0 +1,32 @@
+[package]
+name = "lucent"
+description = "Lucent: lighting, keys and macros for the Glorious GMMK v1"
+version.workspace = true
+edition.workspace = true
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+lucent-core.workspace = true
+hidapi.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+tauri = { version = "2", features = ["tray-icon"] }
+rmcp = { version = "3.7", features = ["server", "macros", "transport-streamable-http-server"] }
+schemars = "1"
+axum = "0.8"
+tokio = { version = "1", features = ["net", "sync", "time"] }
+tokio-util = "0.7"
+log = "0.4.34"
+tauri-plugin-log = "2"
+base64 = "0.23.1"
+tauri-plugin-single-instance = "2"
+
+[target."cfg(windows)".dependencies]
+winreg = "0.56.0"
+windows-sys = { version = "0.61", features = [
+    "Win32_UI_Input_KeyboardAndMouse",
+    "Win32_UI_Shell",
+    "Win32_UI_WindowsAndMessaging",
+] }

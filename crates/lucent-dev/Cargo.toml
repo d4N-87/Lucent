@@ -1,0 +1,10 @@
+[package]
+name = "lucent-dev"
+description = "Developer tools: console menu (--cli) and the draft egui editor"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+lucent-core.workspace = true
+hidapi.workspace = true
+eframe = "0.31"

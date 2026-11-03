@@ -1,0 +1,335 @@
+:root {
+  --bg: #0b0b0f;
+  --surface: rgba(28, 28, 34, 0.72);
+  --surface-strong: rgba(44, 44, 52, 0.9);
+  --hairline: rgba(255, 255, 255, 0.08);
+  --hairline-strong: rgba(255, 255, 255, 0.14);
+  --text: #f5f5f7;
+  --text-2: rgba(235, 235, 245, 0.62);
+  --text-3: rgba(235, 235, 245, 0.36);
+  --accent: #0a84ff;
+  --green: #30d158;
+  --red: #ff453a;
+  --radius: 14px;
+  --ease: cubic-bezier(0.32, 0.72, 0, 1);
+  /* Controls drawn over the surfaces */
+  --fill-subtle: rgba(255, 255, 255, 0.05);
+  --fill: rgba(255, 255, 255, 0.09);
+  --fill-hover: rgba(255, 255, 255, 0.14);
+  --fill-strong: rgba(255, 255, 255, 0.25);
+  --panel: rgba(38, 38, 44, 0.94);
+  --option-bg: #2c2c32;
+  --well: rgba(0, 0, 0, 0.28);
+  --scrim: rgba(0, 0, 0, 0.45);
+  --shadow-strong: rgba(0, 0, 0, 0.6);
+  --segmented: rgba(118, 118, 128, 0.24);
+  --indicator: #636366;
+  --toggle-off: rgba(120, 120, 128, 0.32);
+  --logo-glow: 0.7;
+  --blue-text: #64d2ff;
+  --orange-text: #ffb340;
+  --purple-text: #d18cff;
+  --error-text: #ff7a70;
+
+  font-family: -apple-system, "SF Pro Text", "Segoe UI Variable Text", "Segoe UI", system-ui, sans-serif;
+  font-size: 13px;
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  color-scheme: dark;
+}
+
+/* Light appearance (Settings > Appearance). The keyboard preview keeps its dark look. */
+:root[data-theme="light"] {
+  --bg: #f2f2f7;
+  --surface: rgba(255, 255, 255, 0.78);
+  --surface-strong: rgba(255, 255, 255, 0.96);
+  --hairline: rgba(0, 0, 0, 0.08);
+  --hairline-strong: rgba(0, 0, 0, 0.13);
+  --text: #1d1d1f;
+  --text-2: rgba(60, 60, 67, 0.68);
+  --text-3: rgba(60, 60, 67, 0.42);
+  --accent: #007aff;
+  --green: #34c759;
+  --red: #ff3b30;
+  --fill-subtle: rgba(0, 0, 0, 0.035);
+  --fill: rgba(0, 0, 0, 0.055);
+  --fill-hover: rgba(0, 0, 0, 0.09);
+  --fill-strong: rgba(0, 0, 0, 0.18);
+  --panel: rgba(255, 255, 255, 0.96);
+  --option-bg: #ffffff;
+  --well: rgba(0, 0, 0, 0.04);
+  --scrim: rgba(0, 0, 0, 0.22);
+  --shadow-strong: rgba(0, 0, 0, 0.16);
+  --segmented: rgba(118, 118, 128, 0.12);
+  --indicator: #ffffff;
+  --toggle-off: rgba(120, 120, 128, 0.16);
+  --logo-glow: 0.4;
+  --blue-text: #0071e3;
+  --orange-text: #c45500;
+  --purple-text: #8944ab;
+  --error-text: #d70015;
+  color-scheme: light;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#app {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+  user-select: none;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 3px;
+  background: var(--fill-hover);
+}
+
+::-webkit-scrollbar-button {
+  display: none;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+input {
+  font: inherit;
+  color: inherit;
+}
+
+.caption {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+
+.btn {
+  height: 30px;
+  padding: 0 12px;
+  border-radius: 8px;
+  background: var(--fill);
+  border: 0.5px solid var(--hairline);
+  font-weight: 500;
+  /* A label never wraps or gets squeezed: the text next to it gives way instead. */
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: background 0.2s var(--ease), transform 0.15s var(--ease);
+}
+
+.btn:hover {
+  background: var(--fill-hover);
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn:disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.btn.primary {
+  background: var(--accent);
+  border-color: transparent;
+  color: white;
+}
+
+.btn.primary:hover {
+  background: #2490ff;
+}
+
+/* Shared controls (inspector, effects panel) */
+
+.caption-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.count {
+  color: var(--text-2);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.chip {
+  height: 26px;
+  padding: 0 10px;
+  border-radius: 13px;
+  background: var(--fill-subtle);
+  border: 0.5px solid var(--hairline);
+  color: var(--text-2);
+  font-size: 12px;
+  white-space: nowrap;
+  transition:
+    background 0.2s var(--ease),
+    color 0.2s var(--ease);
+}
+
+.chip:hover {
+  background: var(--fill-hover);
+  color: var(--text);
+}
+
+.chip.active {
+  background: rgba(10, 132, 255, 0.22);
+  border-color: rgba(10, 132, 255, 0.6);
+  color: var(--text);
+}
+
+.segmented {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(var(--n, 2), 1fr);
+  padding: 2px;
+  border-radius: 9px;
+  background: var(--segmented);
+}
+
+.indicator {
+  position: absolute;
+  top: 2px;
+  bottom: 2px;
+  left: 2px;
+  width: calc((100% - 4px) / var(--n, 2));
+  border-radius: 7px;
+  background: var(--indicator);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+  transform: translateX(calc(var(--index) * 100%));
+  transition: transform 0.35s var(--ease);
+}
+
+:root[data-theme="light"] .indicator {
+  box-shadow:
+    0 0 0 0.5px rgba(0, 0, 0, 0.04),
+    0 2px 6px rgba(0, 0, 0, 0.12);
+}
+
+.segmented button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  height: 28px;
+  font-weight: 500;
+  white-space: nowrap;
+  color: var(--text-2);
+  transition: color 0.2s;
+}
+
+.segmented button.active {
+  color: var(--text);
+}
+
+.slider {
+  appearance: none;
+  width: 100%;
+  height: 22px;
+  margin: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.slider::-webkit-slider-runnable-track {
+  height: 4px;
+  border-radius: 2px;
+  background: linear-gradient(to right, var(--accent) var(--fill), var(--fill-hover) var(--fill));
+}
+
+.slider::-webkit-slider-thumb {
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  margin-top: -9px;
+  border-radius: 50%;
+  background: white;
+  box-shadow:
+    0 0 0 0.5px rgba(0, 0, 0, 0.1),
+    0 3px 8px rgba(0, 0, 0, 0.35);
+  transition: transform 0.2s var(--ease);
+}
+
+.slider:active::-webkit-slider-thumb {
+  transform: scale(1.1);
+}
+
+.toggle-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 500;
+}
+
+.toggle {
+  appearance: none;
+  position: relative;
+  width: 42px;
+  height: 25px;
+  margin: 0;
+  border-radius: 13px;
+  background: var(--toggle-off);
+  cursor: pointer;
+  transition: background 0.25s var(--ease);
+}
+
+.toggle::before {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 21px;
+  height: 21px;
+  border-radius: 50%;
+  background: white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  transition: transform 0.25s var(--ease);
+}
+
+.toggle:checked {
+  background: var(--green);
+}
+
+.toggle:checked::before {
+  transform: translateX(17px);
+}
+
+.hint {
+  margin: 0;
+  color: var(--text-3);
+  font-size: 11px;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.hint.left {
+  text-align: left;
+  line-height: 1.4;
+}

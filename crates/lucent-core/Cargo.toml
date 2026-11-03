@@ -1,0 +1,11 @@
+[package]
+name = "lucent-core"
+description = "GMMK v1 protocol and device access"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+hidapi.workspace = true
+log = "0.4.34"
+serde.workspace = true
+serde_json.workspace = true
